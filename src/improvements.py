@@ -3,11 +3,12 @@ from matplotlib import pyplot as plt
 import numpy as np
 
 
-def plot_data(data, mean, xlabel, ylabel, file_name):
+def plot_data(data, mean, median, xlabel, ylabel, file_name):
     plt.plot(data, "r-")
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
     plt.axhline(y=mean, color="b", linestyle="--")
+    plt.axhline(y=median, color="r", linestyle="--")
     plt.savefig(file_name)
     plt.clf()
 
@@ -31,10 +32,12 @@ for num_measurements in [25, 100, 500]:
     )
 
     mean = np.mean(temperatures)
+    median = np.median(temperatures)
 
     plot_data(
         data=temperatures,
         mean=mean,
+        median=median,
         xlabel="measurements",
         ylabel="air temperature (deg C)",
         file_name=str(num_measurements)+'.png',
